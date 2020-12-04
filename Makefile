@@ -3,7 +3,8 @@ default:
 	make run
 
 compile:
-	gcc main_2019459.c -lpthread -o main.out
+	gcc main_2019459.c -lpthread -lrt -o main.out
 
 run:
 	./main.out
+	rm main.out
