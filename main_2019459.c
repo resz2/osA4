@@ -23,23 +23,22 @@ void *philosopher(void *num)    {
         if(i==0)    {
             wait(forks[left]);
             wait(forks[right]);
-            wait(bowls);
         }
         else    {
             wait(forks[right]);
             wait(forks[left]);
-            printf("philosopher %d has forks %d and %d, waiting for bowls\n", i, left, right);
-            wait(bowls);
         }
+        printf("philosopher %d has forks %d and %d, waiting for bowls\n", i, left, right);
+        wait(bowls);
         states[i] = EATING;
         printf("philosopher %d eats using forks %d and %d\n", i, left, right);
 
-        sleep(1);
         signal(bowls);
         printf("philosopher %d puts down bowls\n", i);
         signal(forks[left]);
         signal(forks[right]);
         printf("philosopher %d puts down forks %d and %d\n", i, left, right);
+        sleep(1);
         states[i] = THINKING;
     }
 }
